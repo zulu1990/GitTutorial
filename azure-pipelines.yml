@@ -4,16 +4,54 @@
 # https://aka.ms/yaml
 
 trigger:
-- main
+- none
 
-pool:
-  vmImage: ubuntu-latest
+stages:
+- stage: NonProd
+  displayName: Non Production Stage
+  jobs:
+    - job: 
+      displayName: Job number 1
+      steps: 
+      - task: PowerShell@2
+        inputs:
+          targetType: 'inline'
+          script: |
+            # Write your PowerShell commands here.
+            
+            Write-Host "stage NonProd, step 1 task 1"
+      - task: PowerShell@2
+        inputs:
+          targetType: 'inline'
+          script: |
+            # Write your PowerShell commands here.
+            
+            Write-Host "stage NonProd, step 1 task 2"
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- stage: RunTest
+  displayName: Running tests
+  jobs:
+  - job: 
+    displayName: Job number 2
+    steps:
+    - task: PowerShell@2
+      inputs:
+        targetType: 'inline'
+        script: |
+          # Write your PowerShell commands here.
+          
+          Write-Host "stage RunTest, step 2 task 1"
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- stage: ProdDeploy
+  displayName: Production
+  jobs:
+  - job: 
+    displayName: Job number 3
+    steps:
+    - task: PowerShell@2
+      inputs:
+        targetType: 'inline'
+        script: |
+          # Write your PowerShell commands here.
+          
+          Write-Host "stage Production, step 3 task 1"
