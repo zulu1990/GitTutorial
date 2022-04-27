@@ -6,6 +6,13 @@
 trigger:
 - none
 
+parameters:
+  - name: full_run
+    displayName: if true full run
+    type: boolean
+    default: false
+
+
 stages:
 - stage: NonProd
   displayName: Non Production Stage
@@ -43,6 +50,7 @@ stages:
           Write-Host "stage RunTest, step 2 task 1"
 
 - stage: ProdDeploy
+  condition: eq(parameters.full_run, 'true')
   displayName: Production
   jobs:
   - job: 
