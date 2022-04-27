@@ -36,6 +36,7 @@ stages:
             Write-Host "stage NonProd, step 1 task 2"
 
 - stage: RunTest
+  condition: eq(${{ parameters.fullRun}}, 'true')
   displayName: Running tests
   jobs:
   - job: 
@@ -50,7 +51,7 @@ stages:
           Write-Host "stage RunTest, step 2 task 1"
 
 - stage: ProdDeploy
-  condition: eq(${{ parameters.fullRun}}, 'true')
+  dependsOn: RunTest
   displayName: Production
   jobs:
   - job: 
