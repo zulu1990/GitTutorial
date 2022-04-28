@@ -67,14 +67,11 @@ stages:
           # Write your PowerShell commands here.
           
           Write-Host "stage RunTest, step 2 task 1"
-    - checkout: self
-      displayName: Checkout Deploy scripts
-      path: s\
     - checkout: SophiaDialogsRepository
       displayName: Checkout Sophia sources
-      path: 'book'
+      path: 's'
 
-    - template: book/testing-template.yml
+    - template: s/testing-template.yml
 
 - stage: ProdDeploy
   dependsOn: RunTest
