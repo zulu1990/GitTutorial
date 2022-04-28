@@ -15,6 +15,8 @@ parameters:
 variables:
   - name: chatbotCheckoutRepoPath
     value: 's/sophia-sources'
+  - name: testingTemplate
+    value: 's/sophia-sources/'
 
 resources:
   repositories:
@@ -64,7 +66,15 @@ stages:
       displayName: Checkout Sophia sources
       path: $(chatbotCheckoutRepoPath)
 
-    - template: "$(chatbotCheckoutRepoPath)/testing-template.yml"
+    - task: PowerShell@2
+      inputs:
+        targetType: 'inline'
+        script: |
+          # Write your PowerShell commands here.
+          $asd = Get-ChildItem $(chatbotCheckoutRepoPath)
+          Write-Host $asd
+
+    #- template: "$(chatbotCheckoutRepoPath)/testing-template.yml"
 
 - stage: ProdDeploy
   dependsOn: RunTest
