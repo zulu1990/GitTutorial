@@ -72,9 +72,9 @@ stages:
       path: s\
     - checkout: SophiaDialogsRepository
       displayName: Checkout Sophia sources
-      path: $(chatbotCheckoutRepoPath)
+      path: 'book'
 
-    - template: $(chatbotCheckoutRepoPath)/testing-template.yml
+    - template: book/testing-template.yml
 
 - stage: ProdDeploy
   dependsOn: RunTest
