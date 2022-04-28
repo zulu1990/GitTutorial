@@ -64,7 +64,7 @@ stages:
       displayName: Checkout Sophia sources
       path: $(chatbotCheckoutRepoPath)
 
-    - template: "$(chatbotCheckoutRepoPath)/test-template.yml"
+   # - template: "$(chatbotCheckoutRepoPath)/test-template.yml"
 
 - stage: ProdDeploy
   dependsOn: RunTest
