@@ -67,7 +67,8 @@ stages:
           # Write your PowerShell commands here.
           
           Write-Host "stage RunTest, step 2 task 1"
-
+    - checkout: self
+    - script: dir 
     - template: testing-template.yml@SophiaDialogsRepository
 
 - stage: ProdDeploy
