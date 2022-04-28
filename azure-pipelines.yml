@@ -22,7 +22,7 @@ variables:
 
 resources:
   repositories:
-  - repository: SophiaDialogsRepository
+  - repository: BookStoreAPi
     type: github
     endpoint: zulu1990
     name: zulu1990/BookStoreAPi
@@ -69,11 +69,11 @@ stages:
           
           Write-Host "stage RunTest, step 2 task 1"
    
-    - checkout: SophiaDialogsRepository
+    - checkout: BookStoreAPi
       displayName: Checkout Sophia sources
       path: 's'
 
-    - template: testing-template.yml@SophiaDialogsRepository
+    - template: testing-template.yml@BookStoreAPi
 
 - stage: ProdDeploy
   dependsOn: RunTest
