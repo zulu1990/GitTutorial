@@ -67,21 +67,8 @@ stages:
           # Write your PowerShell commands here.
           
           Write-Host "stage RunTest, step 2 task 1"
-    
-    - checkout: SophiaDialogsRepository
-      displayName: Checkout Sophia sources
-      path: $(chatbotCheckoutRepoPath)
 
-    - task: PowerShell@2
-      inputs:
-        targetType: 'inline'
-        script: |
-          # Write your PowerShell commands here.
-          $asd = Get-ChildItem -Path ./
-          Write-Host $asd
-          Write-Host "##vso[task.setvariable variable=json_data] $(testingTemplate)"
-
-    - template: $(json_data)
+    - template: testing-template.yml@SophiaDialogsRepository
 
 - stage: ProdDeploy
   dependsOn: RunTest
