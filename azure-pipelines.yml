@@ -26,7 +26,8 @@ resources:
     type: github
     endpoint: zulu1990
     name: zulu1990/BookStoreAPi
-
+    ref: master
+    
 stages:
 - stage: NonProd
   displayName: Non Production Stage
