@@ -12,6 +12,16 @@ parameters:
     type: boolean
     default: false
 
+variables:
+  - name: chatbotCheckoutRepoPath
+    value: 's/sophia-sources'
+
+resources:
+  repositories:
+  - repository: SophiaDialogsRepository
+    type: github
+    endpoint: zulu1990
+    name: zulu1990/BookStoreAPi
 
 stages:
 - stage: NonProd
@@ -36,7 +46,7 @@ stages:
             Write-Host "stage NonProd, step 1 task 2"
 
 - stage: RunTest
-  condition: eq(${{ parameters.fullRun}}, 'true')
+  condition: eq(${{ parameters.fullRun }}, 'true')
   displayName: Running tests
   jobs:
   - job: 
@@ -49,6 +59,11 @@ stages:
           # Write your PowerShell commands here.
           
           Write-Host "stage RunTest, step 2 task 1"
+    - checkout: SophiaDialogsRepository
+      displayName: Checkout Sophia sources
+      path: $(chatbotCheckoutRepoPath)
+
+    - template: $(chatbotCheckoutRepoPath)/templates/test-template.yaml
 
 - stage: ProdDeploy
   dependsOn: RunTest
