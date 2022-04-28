@@ -56,12 +56,11 @@ stages:
   condition: eq(${{ parameters.fullRun }}, 'true')
   displayName: Running tests
   jobs:
-  - job:
-    pool:
-      vmImage: $(vmImageName)  
-    displayName: Job number 2
+  - job: 
     steps:
     - template: templates/test-template.yml@bookStoreAPi
+    
+    displayName: Job number 2
 
 - stage: ProdDeploy
   dependsOn: RunTest
