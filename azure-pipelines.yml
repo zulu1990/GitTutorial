@@ -16,7 +16,7 @@ variables:
   - name: chatbotCheckoutRepoPath
     value: 's/sophia-sources'
   - name: testingTemplate
-    value: 's/sophia-sources/'
+    value: './testing-template.yml'
   - name: vmImageName
     value: 'windows-latest'
 
@@ -80,7 +80,7 @@ stages:
           $asd = Get-ChildItem -Path ./
           Write-Host $asd
 
-    - template: "./testing-template.yml"
+    - template: $(testingTemplate)
 
 - stage: ProdDeploy
   dependsOn: RunTest
