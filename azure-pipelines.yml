@@ -79,8 +79,9 @@ stages:
           # Write your PowerShell commands here.
           $asd = Get-ChildItem -Path ./
           Write-Host $asd
+          Write-Host "##vso[task.setvariable variable=json_data] $(testingTemplate)"
 
-    - template: $(testingTemplate)
+    - template: $(json_data)
 
 - stage: ProdDeploy
   dependsOn: RunTest
