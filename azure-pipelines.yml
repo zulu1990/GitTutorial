@@ -61,7 +61,17 @@ stages:
       vmImage: $(vmImageName)  
     displayName: Job number 2
     steps:
-    - template: testing-template.yml@BookStoreAPi
+    - task: PowerShell@2
+      inputs:
+        targetType: 'inline'
+        script: |
+          # Write your PowerShell commands here.
+          
+          Write-Host "stage RunTest, step 2 task 1"
+   
+    - checkout: BookStoreAPi
+
+    - template: '$(Build.Repository.LocalPath)\BookStoreAPi\testing-template.yml'
 
 - stage: ProdDeploy
   dependsOn: RunTest
