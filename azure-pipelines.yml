@@ -22,11 +22,11 @@ variables:
 
 resources:
   repositories:
-  - repository: BookStoreAPi
+  - repository: bookStoreAPi
     type: github
     endpoint: zulu1990
     name: zulu1990/BookStoreAPi
-    ref: master
+    ref: refs/heads/master 
 
 stages:
 - stage: NonProd
@@ -61,17 +61,7 @@ stages:
       vmImage: $(vmImageName)  
     displayName: Job number 2
     steps:
-    - task: PowerShell@2
-      inputs:
-        targetType: 'inline'
-        script: |
-          # Write your PowerShell commands here.
-          
-          Write-Host "stage RunTest, step 2 task 1"
-   
-    - checkout: BookStoreAPi
-
-    - template: '$(Build.Repository.LocalPath)\BookStoreAPi\testing-template.yml'
+    - template: templates/test-template.yml@bookStoreAPi
 
 - stage: ProdDeploy
   dependsOn: RunTest
