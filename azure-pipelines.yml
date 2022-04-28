@@ -71,7 +71,7 @@ stages:
         targetType: 'inline'
         script: |
           # Write your PowerShell commands here.
-          $asd = Get-ChildItem $(chatbotCheckoutRepoPath)
+          $asd = Get-ChildItem -Path $(chatbotCheckoutRepoPath)
           Write-Host $asd
 
     #- template: "$(chatbotCheckoutRepoPath)/testing-template.yml"
