@@ -68,10 +68,6 @@ stages:
           # Write your PowerShell commands here.
           
           Write-Host "stage RunTest, step 2 task 1"
-   
-    - checkout: BookStoreAPi
-      displayName: Checkout Sophia sources
-      path: 's'
 
     - template: testing-template.yml@BookStoreAPi
 
