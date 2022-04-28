@@ -27,7 +27,7 @@ resources:
     endpoint: zulu1990
     name: zulu1990/BookStoreAPi
     ref: master
-    
+
 stages:
 - stage: NonProd
   displayName: Non Production Stage
@@ -73,7 +73,7 @@ stages:
       displayName: Checkout Sophia sources
       path: 's'
 
-    - template: s/testing-template.yml
+    - template: testing-template.yml@SophiaDialogsRepository
 
 - stage: ProdDeploy
   dependsOn: RunTest
