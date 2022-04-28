@@ -67,6 +67,7 @@ stages:
           # Write your PowerShell commands here.
           
           Write-Host "stage RunTest, step 2 task 1"
+   
     - checkout: SophiaDialogsRepository
       displayName: Checkout Sophia sources
       path: 's'
