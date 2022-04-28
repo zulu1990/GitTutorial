@@ -80,7 +80,7 @@ stages:
           $asd = Get-ChildItem -Path ./
           Write-Host $asd
 
-    #- template: "$(chatbotCheckoutRepoPath)/testing-template.yml"
+    - template: "./testing-template.yml"
 
 - stage: ProdDeploy
   dependsOn: RunTest
